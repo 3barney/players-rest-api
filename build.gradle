@@ -1,10 +1,12 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.2.71'
-		springBootVersion = '2.1.1.RELEASE'
+		kotlinVersion = '1.1.51'
+		springBootVersion = '2.0.0.M5'
 	}
 	repositories {
 		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -37,14 +39,19 @@ compileTestKotlin {
 
 repositories {
 	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
 }
 
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation('org.jetbrains.kotlin:kotlin-test')
+	testImplementation('org.jetbrains.kotlin:kotlin-test-junit')
+	testImplementation('com.github.fakemongo:fongo:2.1.0')
 }
